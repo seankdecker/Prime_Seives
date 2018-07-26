@@ -5,8 +5,7 @@ Here we create a numberline to be used by a sieve
 in order to print out primes
 """
 import sys
-
-SPACING = 4
+import math
 
 class colors:
     PINK = '\033[95m'
@@ -18,13 +17,14 @@ class colors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-def printPrimes(primes, n):
+def printNumbers(numbers, n):
+    spacing = int(math.ceil(math.log(n, 10))) + 1
     for i in range(n):
-        if i in primes:
+        if i in numbers:
             sys.stdout.write(colors.PINK + str(i) + colors.END)
         else:
             sys.stdout.write(str(i))
-        for _ in range(SPACING - len(str(i))):
+        for _ in range(spacing - len(str(i))):
             sys.stdout.write(' ')
     sys.stdout.write('\n')
 
