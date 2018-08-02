@@ -40,4 +40,4 @@ def euler(n):
     return numbers
 
 if __name__ == "__main__":
-    euler(10)
+    print(euler(100))
