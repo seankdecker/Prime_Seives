@@ -17,6 +17,7 @@ It works as follows:
 The sieve of Sundaram sieves out the composite numbers just as sieve of Eratosthenes does, but even numbers are not considered; the work of "crossing out" the multiples of 2 is done by the final double-and-increment step. Whenever Eratosthenes' method would cross out k different multiples of a prime {\displaystyle 2i+1} 2i+1, Sundaram's method crosses out {\displaystyle i+j(2i+1)} i + j(2i+1) for {\displaystyle 1\leq j\leq \lfloor k/2\rfloor } 1\le j\le \lfloor k/2\rfloor.
 '''
 import math
+from euler import euler
 
 # returns the list of primes up to n
 # These primes are found by by Sundaram's Sieve
@@ -24,15 +25,23 @@ def sundaram(n):
     if n < 2: return []
     m = (n - 1)/2
     numbers = range(1, m + 1)
-    # i + j + 2ij = m  => 2i + 2i^2 = m = 0 = i + i^2 - m/2 =>
-    for i in range(1, m): #int(math.sqrt(m))):
-        for j in range(i, m): #int(math.sqrt(m))):
-            # print (i + j + 2*i*j)
+    # again we are finding all numbers of the form i + j + 2ij
+    # 1 <= i <= j
+    # highest i then will be: i + i + 2i*i = m => i = O(sqrt(m))
+    # highets j then will be: i + j + 2i*j = m => j = (m - i)/(2*i)
+    for i in range(1, int(math.sqrt(m))):
+        for j in range(i, int((m - i)/(2*i)) + 1):
             if i + j + 2*i*j > m: continue
             if i + j + 2*i*j in numbers:
                 numbers.remove(i + j + 2*i*j)
     numbers = [2 * i + 1 for i in numbers]
+    numbers.insert(0, 2)
     return numbers
 
 if __name__ == '__main__':
+    primes = euler(10000)
+    maybe_primes = sundaram(10000)
+    for m in maybe_primes:
+        if m not in primes:
+            print('FDSJAFK')
     print(sundaram(100))
