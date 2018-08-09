@@ -1,4 +1,4 @@
-"""
+'''
 euler.py
 
 Here we implement Euler's Sieve!
@@ -10,6 +10,9 @@ This sieve can be thought of as an optimized Sieve of
 Eratosthenes in which each composite number is removed
 exactly once.
 
+'''
+
+'''                         ALGORITHM
 This sieve works as follows:
 
 1. Create a list of integers 2 up to some limit we define as n
@@ -20,7 +23,20 @@ This sieve works as follows:
 4. Let p be the next element in the list, which will be the next prime. If p^2
    is > n, then stop, else repeat step 3
 5. After the stop, we should have a list of prime numbers up to n
-"""
+'''
+
+'''                        COMPLEXITY
+TIME
+The work done is in removing composites from the list. Each composite is taken
+out only once, so the work done is
+                            O(n)
+see the article included in this folder for more info
+
+SIZE
+The space complexity comes from the list we create. This is largest when we begin
+at a length of n
+                                O(n)
+'''
 
 # returns the list of primes up to n
 # These primes are found by by Euler's Sieve
@@ -40,4 +56,4 @@ def euler(n):
     return numbers
 
 if __name__ == "__main__":
-    print(euler(100))
+    pass

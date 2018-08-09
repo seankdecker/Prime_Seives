@@ -1,4 +1,4 @@
-"""
+'''
 eratosthenes.py
 
 Here we implement the Sieve of Eratosthenes!
@@ -7,6 +7,9 @@ named after the Greek mathematician Eratosthenes of Cyrene.
 
 The earliest known reference to and description of this sieve
 is in Nicomachus of Gerasa's Introduction to Arithmetic.
+'''
+
+'''                     ALGORITHM
 
 The Sieve of Eratosthenes works as follows:
 
@@ -19,8 +22,25 @@ The Sieve of Eratosthenes works as follows:
 5. Once this stops, we have a list of primes up to n
 
 There is an obvious and immediate optimization we can do in which we instead of
-starting at 2p, we start at p^2.
-"""
+starting at 2p, we start at p^2. We implement this in eratosthenesWithSpeedup()
+'''
+
+'''                     COMPLEXITY
+TIME
+The sieve of eratosthenes' work is in removing elements from the list it creates
+It removes O(\sum_{p <= n} n/p)) elements when p is a prime
+by Merten's Theorem, \sum_{p <= n} 1/p = ln ln n + M, where p is a prime, and M
+is the Meissel-Mertens constant, in the limit as n goes to infinity
+Thus the time complexity is
+                            O(n * (lnln(n) + M))
+The speedup of ending at n^1/2 though leads to a complexity of
+                            O(n * (lnln(n) + M))
+
+SPACE
+The space complexity comes from the list we create. This is largest when we begin
+at a length of n
+                                O(n)
+'''
 
 # returns the list of primes up to n
 # These primes are found by the Sieve of Eratosthenes
@@ -56,5 +76,4 @@ def eratosthenesWithSpeedup(n):
     return numbers
 
 if __name__ == "__main__":
-    for i in range(12):
-        print i, " :  ", eratosthenesWithSpeedup(i)
+    pass

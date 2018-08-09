@@ -5,7 +5,9 @@ Here we implement the Sieve of Sundaram
 This sieve was discovered by S.P. Sundaram in
 1934. I had a hard time finding any other information
 about it though.
+'''
 
+'''                         ALGORITHM
 It works as follows:
 1. Create a list of integers from 1 to up to some limit we define as m.
    (we will get all primes up to (m + 1) * 2
@@ -15,6 +17,15 @@ It works as follows:
 4. You are left with all primes except 2giving a list of the odd prime numbers (i.e., all primes except 2) below 2n + 2.
 
 The sieve of Sundaram sieves out the composite numbers just as sieve of Eratosthenes does, but even numbers are not considered; the work of "crossing out" the multiples of 2 is done by the final double-and-increment step. Whenever Eratosthenes' method would cross out k different multiples of a prime {\displaystyle 2i+1} 2i+1, Sundaram's method crosses out {\displaystyle i+j(2i+1)} i + j(2i+1) for {\displaystyle 1\leq j\leq \lfloor k/2\rfloor } 1\le j\le \lfloor k/2\rfloor.
+'''
+
+'''                         COMLPEXITY
+TIME
+                                O(n)
+
+SIZE
+The list that we make here is only up to half of n
+                                O(n/2)
 '''
 import math
 from euler import euler
