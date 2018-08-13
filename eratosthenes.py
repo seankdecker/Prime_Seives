@@ -48,12 +48,14 @@ def eratosthenes(n):
     if n < 2: return []
     numbers = range(2, n + 1)
     p = 2
-    while p**2 <= n:
+    while p <= n:
         multiple_of_p = 2 * p
         while multiple_of_p <= n:
+            # print multiple_of_p
             if multiple_of_p in numbers:
                 numbers.remove(multiple_of_p)
             multiple_of_p += p
+        if numbers.index(p) + 1 == len(numbers): break
         p = numbers[numbers.index(p) + 1]
     return numbers
 
@@ -69,6 +71,7 @@ def eratosthenesWithSpeedup(n):
     while p**2 <= n:
         multiple_of_p = p**2
         while multiple_of_p <= n:
+            # print multiple_of_p
             if multiple_of_p in numbers:
                 numbers.remove(multiple_of_p)
             multiple_of_p += p
@@ -76,4 +79,7 @@ def eratosthenesWithSpeedup(n):
     return numbers
 
 if __name__ == "__main__":
-    pass
+    print 'eratosthenes'
+    eratosthenes(1000)
+    print 'eratosthenesWithSpeedup'
+    eratosthenesWithSpeedup(1000)
