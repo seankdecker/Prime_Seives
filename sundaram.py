@@ -34,8 +34,8 @@ from euler import euler
 # These primes are found by by Sundaram's Sieve
 def sundaram(n):
     if n < 2: return []
-    m = (n - 1)/2
-    numbers = range(1, m + 1)
+    m = math.floor((n - 1)/2)
+    numbers = [i for i in range(1, m + 1)]
     # again we are finding all numbers of the form i + j + 2ij
     # 1 <= i <= j
     # highest i then will be: i + i + 2i*i = m => i = O(sqrt(m))

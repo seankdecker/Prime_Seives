@@ -1,4 +1,6 @@
 '''
+atkin.p
+
 akin.py
 
 This is the most modern alogorithm that I plane to implement
@@ -9,40 +11,54 @@ This sieve was created in 2003 by A.O.L. Atkin and Daniel J. Bernstein
 1. Create a list of [2, 3, 5]
 2. Create a list of integers up to some limit we define as n
 3.
-
-hmmm I want to understand this sieve better before implementing it
-still isn't completely correct
 '''
 
 import math
 from euler import euler
 
-# returns the list of primes up to n
-# These primes are found by by Atkins's Sieve
-def atkin(n):
-    if n <= 60:
-        return euler(n)
-    # first we roll the wheel of factorization twice to find modulo 60 candidate prime
-    hits = [1] + euler(60)
-    for _ in range(3):
-        del hits[1]
-    # make list of candidate primes based on primes under 60
-    numbers = []
-    for i in range(n/60):
-        for hit in hits:
-            numbers.append((60 * i) + hit)
-    i = n/60
-    for hit in hits:
-        if (60 * i) + hit > n:
-            break
-        numbers.append((60 * i) + hit)
-    # if n < 3: return [2]
-    # if n < 5: return [2, 3]
-    # primes = [2, 3, 5]
-    # numbers = range(1, n + 1)
-    # for n in numbers:
-    return numbers
+
+# Trying again with the Sieve of Atkin
+def atkin(limit):
+    primes = []
+    if limit > 2:
+        primes.append(2)
+    if limit > 3:
+        primes.append(3)
+    # defining this function to easily
+    # toggle nums in primes set
+    def toggle(n):
+        if n in primes:
+            primes.remove(n)
+        else:
+            primes.append(n)
+
+    # execute sieve of atkin
+    x = 1
+    while x * x < limit:
+        y = 1
+        while y * y < limit:
+            n = (4 * x * x) + (y * y)
+            if n <= limit and (n % 12 == 1 or n % 12 == 5):
+                toggle(n)
+            n = (3 * x * x) + (y * y)
+            if n <= limit and n % 12 == 7:
+                toggle(n)
+            n = (3 * x * x) - (y * y)
+            if x > y and n <= limit and n % 12 == 11:
+                toggle(n)
+            y += 1
+        x += 1
+    # now we just need to remove square nums
+    r = 5
+    primes.sort()
+    while r * r < limit:
+        if r in primes:
+            for i in range(r * r, limit, r * r):
+                if i in primes:
+                    primes.remove(i)
+        r = primes[primes.index(r) + 1]
+    return primes
 
 
 if __name__ == '__main__':
-    print(atkin(100))
+    print(atkin(20))

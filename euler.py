@@ -42,7 +42,7 @@ at a length of n
 # These primes are found by by Euler's Sieve
 def euler(n):
     if n < 2: return []
-    numbers = range(2, n + 1)
+    numbers = [i for i in range(2, n + 1)]
     p = 2
     while p**2 <= n:
         i = numbers.index(p)

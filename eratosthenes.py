@@ -46,7 +46,7 @@ at a length of n
 # These primes are found by the Sieve of Eratosthenes
 def eratosthenes(n):
     if n < 2: return []
-    numbers = range(2, n + 1)
+    numbers = [i for i in range(2, n + 1)]
     p = 2
     while p <= n:
         multiple_of_p = 2 * p
@@ -66,7 +66,7 @@ def eratosthenes(n):
 # and ending when p**2 <= n
 def eratosthenesWithSpeedup(n):
     if n < 2: return []
-    numbers = range(2, n + 1)
+    numbers = [i for i in range(2, n + 1)]
     p = 2
     while p**2 <= n:
         multiple_of_p = p**2
@@ -79,7 +79,7 @@ def eratosthenesWithSpeedup(n):
     return numbers
 
 if __name__ == "__main__":
-    print 'eratosthenes'
+    print('eratosthenes')
     eratosthenes(1000)
-    print 'eratosthenesWithSpeedup'
+    print('eratosthenesWithSpeedup')
     eratosthenesWithSpeedup(1000)

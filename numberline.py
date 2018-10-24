@@ -1,9 +1,9 @@
-"""
+'''
 numberline.py
 
 Here we create a numberline to be used by a sieve
 in order to print out primes
-"""
+'''
 import sys
 import math
 

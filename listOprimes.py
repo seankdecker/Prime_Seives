@@ -1,9 +1,9 @@
-"""
+'''
 listOprimes.py
 
 Here I just give a list of the primes cause you know
 I gotta test my sieves
-"""
+'''
 
 # return a list of the primes up to 199
 def listOprimes(n):
